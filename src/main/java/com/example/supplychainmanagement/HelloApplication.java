@@ -3,6 +3,10 @@ package com.example.supplychainmanagement;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import javafx.scene.layout.Pane;
@@ -11,8 +15,26 @@ import java.io.IOException;
 
 public class HelloApplication extends Application {
 
+    private GridPane loginPage(){
+        Label emailLabel=new Label("Email");
+        Label passwordLabel =new Label("Password");
+
+        TextField emailTextField=new TextField();
+        PasswordField passwordfield=new PasswordField();
+
+        GridPane gridpane=new GridPane();
+        gridpane.add(emailLabel,0,0);
+        gridpane.add(emailTextField,1,0);
+        gridpane.add(passwordLabel,0,1);
+        gridpane.add(passwordfield,1,1);
+
+        return gridpane;
+    }
+
     private Pane createContent(){
         Pane root=new Pane();
+
+        root.getChildren().addAll(loginPage());
         return root;
     }
 
