@@ -1,6 +1,8 @@
 package com.example.supplychainmanagement;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -42,23 +44,35 @@ public class HelloApplication extends Application {
     private GridPane loginPage(){
         Label emailLabel=new Label("Email");
         Label passwordLabel =new Label("Password");
+        Label messageLabel=new Label("I am message");
 
         TextField emailTextField=new TextField();
         PasswordField passwordfield=new PasswordField();
+
+        Button loginButton =new Button("Login");
+        loginButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                String email=emailLabel.getText();
+                String password=passwordfield.getText();
+                messageLabel.setText(email+" $$ " +password);
+            }
+        });
 
         GridPane gridpane=new GridPane();
         gridpane.setMinSize(bodypane.getMinWidth(),bodypane.getMinHeight());
         gridpane.setVgap(5);
         gridpane.setHgap(5);
-        gridpane.setStyle("-fx-background-color:BLUE");
+//        gridpane.setStyle("-fx-background-color:BLUE");
 
-//        gridpane.setAlignment(Pos.CENTER);
+        gridpane.setAlignment(Pos.CENTER);
 
         gridpane.add(emailLabel,0,0);
         gridpane.add(emailTextField,1,0);
         gridpane.add(passwordLabel,0,1);
         gridpane.add(passwordfield,1,1);
-
+        gridpane.add(loginButton,0,2);
+        gridpane.add(messageLabel,1,2);
         return gridpane;
     }
 
