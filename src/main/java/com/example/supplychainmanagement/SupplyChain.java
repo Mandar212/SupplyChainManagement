@@ -3,7 +3,6 @@ package com.example.supplychainmanagement;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -11,17 +10,17 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 
-public class HelloApplication extends Application {
+public class SupplyChain extends Application {
 
     public static final int width=700, height =600, header=50;
 
     Pane bodypane=new Pane();
+    Login login=new Login();
 
     private GridPane headerBar(){
         TextField searchText=new TextField();
@@ -53,9 +52,15 @@ public class HelloApplication extends Application {
         loginButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                String email=emailLabel.getText();
+                String email=emailTextField.getText();
                 String password=passwordfield.getText();
-                messageLabel.setText(email+" $$ " +password);
+                //messageLabel.setText(email+" $$ " +password);
+                if(login.customerLogin(email,password)){
+                    messageLabel.setText("Login Successful");
+                }else{
+                    messageLabel.setText("Login Failed");
+                }
+
             }
         });
 
