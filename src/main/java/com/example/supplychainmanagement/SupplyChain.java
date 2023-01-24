@@ -20,12 +20,28 @@ public class SupplyChain extends Application {
     public static final int width=700, height =600, header=50;
 
     Pane bodypane=new Pane();
+    public static int bodyWidth,bodyHeight;
     Login login=new Login();
     ProductDetails productDetails=new ProductDetails();
+
+    Button golbalLogin;
 
     private GridPane headerBar(){
         TextField searchText=new TextField();
         Button searchButton=new Button("Search");
+        searchButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                String productName = searchText.getText();
+                //clear body and put this new pane in the body
+                bodypane.getChildren().clear();
+                bodypane.getChildren().add(productDetails.getProductsByName(productName));
+            }
+        });
+
+        golbalLogin =new Button("Log In");
+
+
 
         GridPane gridpane=new GridPane();
         gridpane.setMinSize(bodypane.getMinWidth(),header-10);
